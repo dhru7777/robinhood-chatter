@@ -161,8 +161,12 @@ function initials(ticker) {
 }
 
 function apiBase() {
-  const raw = (typeof window !== 'undefined' && (window.RH_API_BASE || localStorage.getItem('RH_API_BASE'))) || '';
-  return String(raw).trim().replace(/\/$/, '');
+  let raw = (typeof window !== 'undefined' && (window.RH_API_BASE || localStorage.getItem('RH_API_BASE'))) || '';
+  raw = String(raw).trim().replace(/\/$/, '');
+  if (!raw) return '';
+  // Netlify env often omits the scheme; fetch needs an absolute URL
+  if (!/^https?:\/\//i.test(raw)) raw = `https://${raw}`;
+  return raw;
 }
 
 function apiUrl(path) {

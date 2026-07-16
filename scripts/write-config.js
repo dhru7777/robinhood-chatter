@@ -1,9 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 
-const base = String(process.env.RH_API_BASE || process.env.API_BASE || '')
+let base = String(process.env.RH_API_BASE || process.env.API_BASE || '')
   .trim()
   .replace(/\/$/, '');
+
+if (base && !/^https?:\/\//i.test(base)) {
+  base = `https://${base}`;
+}
 
 const out = path.join(__dirname, '..', 'config.js');
 fs.writeFileSync(
