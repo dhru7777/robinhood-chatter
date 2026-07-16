@@ -11,6 +11,12 @@ npm start
 
 Open http://localhost:3000
 
-## Deploy
+## Deploy (Render)
 
-Configured for Railway (`railway.toml`). Set `POLY_API_KEY` in service variables.
+1. Open the Blueprint: https://dashboard.render.com/blueprints/new?repo=https://github.com/dhru7777/robinhood-chatter
+2. Apply `render.yaml`
+3. When prompted, set **POLY_API_KEY** (Polygon API key)
+4. Deploy the `robinhood-chatter` web service
+
+Local: `npm start` → http://localhost:3000  
+Config: `render.yaml` (Node web service, health check `/api/health`)

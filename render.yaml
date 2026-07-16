@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: robinhood-chatter
+    runtime: node
+    plan: free
+    region: oregon
+    branch: main
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: POLY_API_KEY
+        sync: false
